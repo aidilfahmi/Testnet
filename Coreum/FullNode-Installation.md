@@ -1,9 +1,24 @@
-<h2>MANUAL INSTALLATION with CUSTOM PORT</h2>
+<h2>MANUAL INSTALLATION</h2>
 
 
-## System Requirements
+### System Requirements
 ![image](https://user-images.githubusercontent.com/16186519/218291634-de22062f-9cca-407a-9cfb-8a9a37892393.png)
 
+## Optional
+
+#### Custom user
+
+```
+sudo adduser coreum
+sudo adduser coreum sudo
+su - coreum
+```
+#### Using Custom Port
+```
+PORT=36
+echo "export PORT=${PORT}" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
 ## Preparing
 ```
 sudo apt -q update
@@ -65,9 +80,13 @@ curl -Ls https://snap.nodexcapital.com/coreum/addrbook.json > $HOME/.core/coreum
 ```
 
 ## Set Port app.toml and config.toml
+```diff
+- This Step If you running custom port, if you running default port, skip this step
 ```
-sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:36658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:36657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:36060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:36656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":36660\"%" $HOME/.core/coreum-testnet-1/config/config.toml
-sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:36317\"%; s%^address = \":8080\"%address = \":36080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:36090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:36091\"%" $HOME/.core/coreum-testnet-1/config/app.toml
+```
+sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/$FOLDER/$CHAIN/config/config.toml
+sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%" $HOME/$FOLDER/$CHAIN/config/app.toml
+
 ```
 
 ## Set Config Pruning
