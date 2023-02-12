@@ -123,7 +123,6 @@ Environment="DAEMON_NAME=cored"
 Environment="UNSAFE_SKIP_BACKUP=true"
 [Install]
 WantedBy=multi-user.target
-coreum@vmi1191239:~$
 
 EOF
 ```
