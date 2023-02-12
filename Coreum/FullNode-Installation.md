@@ -61,7 +61,7 @@ Replace `moniker_name` with your own moniker name
 ```
 cored config chain-id coreum-testnet-1
 cored config keyring-backend test
-cored config node tcp://localhost:36657
+cored config node tcp://localhost:${PORT}657
 cored init moniker_name --chain-id coreum-testnet-1
 ```
 
