@@ -7,30 +7,6 @@ echo -e "\e[0m"
 
 sleep 1
 
-# Variable
-SOURCE=andromedad
-WALLET=wallet
-BINARY=andromedad
-CHAIN=galileo-3
-FOLDER=.andromedad
-DENOM=uandr
-REPO=https://github.com/andromedaprotocol/andromedad.git
-GENESIS=https://raw.githubusercontent.com/andromedaprotocol/testnets/galileo-3/genesis.json
-ADDRBOOK=https://snapshots.nodeist.net/t/andromeda/addrbook.json
-PORT=54
-
-echo "export SOURCE=${SOURCE}" >> $HOME/.bash_profile
-echo "export WALLET=${WALLET}" >> $HOME/.bash_profile
-echo "export BINARY=${BINARY}" >> $HOME/.bash_profile
-echo "export DENOM=${DENOM}" >> $HOME/.bash_profile
-echo "export CHAIN=${CHAIN}" >> $HOME/.bash_profile
-echo "export FOLDER=${FOLDER}" >> $HOME/.bash_profile
-echo "export REPO=${REPO}" >> $HOME/.bash_profile
-echo "export GENESIS=${GENESIS}" >> $HOME/.bash_profile
-echo "export ADDRBOOK=${ADDRBOOK}" >> $HOME/.bash_profile
-echo "export PORT=${PORT}" >> $HOME/.bash_profile
-source $HOME/.bash_profile
-
 # Set Vars
 if [ ! $NODENAME ]; then
         read -p "Type Your Validator Name:~# [ENTER YOUR NODENAME] > " NODENAME
