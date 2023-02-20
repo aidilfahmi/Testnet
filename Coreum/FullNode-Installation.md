@@ -6,19 +6,21 @@
 
 ## Optional
 
-#### Custom user
+### Custom user
 
 ```
 sudo adduser coreum
 sudo adduser coreum sudo
 su - coreum
 ```
-#### Using Custom Port
+### Using Custom Port
 ```
 PORT=36
 echo "export PORT=${PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
+
+
 ## Preparing
 ```
 sudo apt -q update
@@ -40,17 +42,15 @@ cd $HOME
 curl -LOf https://github.com/CoreumFoundation/coreum/releases/download/v0.1.1/cored-linux-amd64
 chmod +x cored-linux-amd64
 mv cored-linux-amd64 cored
+sudo ln -s $HOME/cored /usr/bin/cored
+
+```
+
+### #Optional Using Cosmovisor
+```
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
-```
-
-## Prepare binaries for Cosmovisor
-```
 mkdir -p $HOME/.core/coreum-testnet-1/cosmovisor/genesis/bin
-cp cored $HOME/.core/coreum-testnet-1/cosmovisor/genesis/bin
-```
-
-## Create application symlinks
-```
+cp $HOME/cored $HOME/.core/coreum-testnet-1/cosmovisor/genesis/bin
 ln -s $HOME/.core/coreum-testnet-1/cosmovisor/genesis $HOME/.core/coreum-testnet-1/cosmovisor/current
 sudo ln -s $HOME/.core/coreum-testnet-1/cosmovisor/current/bin/cored /usr/bin/cored
 ```
@@ -61,7 +61,6 @@ Replace `moniker_name` with your own moniker name
 ```
 cored config chain-id coreum-testnet-1
 cored config keyring-backend test
-cored config node tcp://localhost:${PORT}657
 cored init moniker_name --chain-id coreum-testnet-1
 ```
 
@@ -84,6 +83,7 @@ curl -Ls https://snap.nodexcapital.com/coreum/addrbook.json > $HOME/.core/coreum
 - This Step If you running custom port, if you running default port, skip this step
 ```
 ```
+cored config node tcp://localhost:${PORT}657
 sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${PORT}658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${PORT}060\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${PORT}660\"%" $HOME/.core/coreum-testnet-1/config/config.toml
 sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${PORT}317\"%; s%^address = \":8080\"%address = \":${PORT}080\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${PORT}090\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${PORT}091\"%" $HOME/.core/coreum-testnet-1/config/app.toml
 
@@ -107,6 +107,26 @@ sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0utestcore\"/" $HOM
 ```
 
 ## Create Service
+
+### Without Cosmovisor
+```
+sudo tee /etc/systemd/system/cored.service > /dev/null <<EOF
+[Unit]
+Description=Coreum Testnet
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cored) start --home $HOME/.core/coreum-testnet-1/
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+### With Cosmovisor
 ```
 sudo tee /etc/systemd/system/cored.service > /dev/null << EOF
 [Unit]
