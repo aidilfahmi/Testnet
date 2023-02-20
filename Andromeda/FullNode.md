@@ -158,5 +158,5 @@ rm /etc/systemd/system/andromedad.service && \
 sudo systemctl daemon-reload && \
 cd $HOME && \
 rm -rf .andromedad && \
-rm -rf $(which cored)
+rm -rf $(which andromedad)
 ```
