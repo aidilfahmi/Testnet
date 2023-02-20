@@ -59,7 +59,7 @@ sudo ln -s $HOME/.andromedad/cosmovisor/current/bin/andromedad /usr/bin/andromed
 
 Replace `moniker_name` with your own moniker name
 ```
-andromedad config chain-id cgalileo-3
+andromedad config chain-id galileo-3
 andromedad config keyring-backend test
 andromedad init moniker_name --chain-id galileo-3
 ```
