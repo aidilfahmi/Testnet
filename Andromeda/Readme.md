@@ -5,6 +5,7 @@
 Edit variable as you need
 
 ```
+SOURCE=andromedad
 WALLET=wallet
 BINARY=andromedad
 CHAIN=galileo-3
@@ -12,9 +13,10 @@ FOLDER=.andromedad
 DENOM=uandr
 REPO=https://github.com/andromedaprotocol/andromedad.git
 GENESIS=https://raw.githubusercontent.com/andromedaprotocol/testnets/galileo-3/genesis.json
-ADDRBOOK=https://snapshots.nodeist.net/t/andromeda/addrbook.json
+ADDRBOOK=
 PORT=54
 
+echo "export SOURCE=${SOURCE}" >> $HOME/.bash_profile
 echo "export WALLET=${WALLET}" >> $HOME/.bash_profile
 echo "export BINARY=${BINARY}" >> $HOME/.bash_profile
 echo "export DENOM=${DENOM}" >> $HOME/.bash_profile
