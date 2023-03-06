@@ -156,7 +156,7 @@ Should be like this
 
 ## Import Wallet
 
-### Use New Wallet
+### Use Nolus Wallet from NODE before.
 
 ```bash
 MNEMONIC="Your_mnemonic_or_Phrase"
