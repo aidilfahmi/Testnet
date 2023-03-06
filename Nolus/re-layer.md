@@ -225,3 +225,18 @@ hermes tx ft-transfer \
 --timeout-height-offset 180
 
 ```
+Sample Transaaction from  Osmosis(0) to Nolus-Rila(1837)
+
+```
+hermes tx ft-transfer \
+--src-chain osmo-test-4 \
+--dst-chain nolus-rila \
+--src-port transfer \
+--src-channel channel-1837 \
+--key-name relayer \
+--receiver address_nolus \
+--amount 1 \
+--denom uosmo \
+--timeout-seconds 60 \
+--timeout-height-offset 180
+```
