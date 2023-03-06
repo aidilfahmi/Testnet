@@ -12,6 +12,11 @@ mkdir -p $HOME/.hermes
 ```bash
 hermes version
 ```
+should be something like this
+```
+2023-03-06T04:56:38.420498Z  INFO ThreadId(01) running Hermes v1.2.0+061f14f
+hermes 1.2.0+061f14f
+```
 
 ### If `glibc` Error (OPTIONAL)
 
