@@ -148,6 +148,9 @@ list = [
 ```bash
 hermes health-check
 ```
+Should be like this
+
+![image](https://user-images.githubusercontent.com/16186519/223024471-850626c5-1ffc-49bc-a8b1-6ebe556062d5.png)
 
 ## Import Wallet
 
