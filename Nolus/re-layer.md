@@ -154,7 +154,7 @@ hermes health-check
 ### Use New Wallet
 
 ```bash
-MNEMONIC="Your_menemonic_or Phrase"
+MNEMONIC="Your_mnemonic_or_Phrase"
 ```
 
 ```bash
