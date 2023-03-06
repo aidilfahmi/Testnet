@@ -41,7 +41,9 @@ grpc_addr,
 websocket_addr,`
 with your own node configuration
 
-```bash
+``memo_prefix = 'Relayed by Your_Moniker'`` Replace with your NODE NAME
+
+```diff
 # The global section has parameters that apply globally to the relayer operation.
 [global]
 log_level = 'info'
