@@ -154,7 +154,7 @@ hermes health-check
 ### Use New Wallet
 
 ```bash
-MNEMONIC="isi_mnemonic_kalian"
+MNEMONIC="Your_menemonic_or Phrase"
 ```
 
 ```bash
