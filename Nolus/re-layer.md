@@ -32,6 +32,7 @@ hermes version
 ### Enable Indexer
 ```
 sed -i -e 's|^indexer *=.*|indexer = "kv"|' $HOME/.nolus/config/config.toml
+sudo systemctl restart nolusd
 ```
 ### Set Config Hermes
 ```
