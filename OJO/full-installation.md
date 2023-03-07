@@ -134,11 +134,21 @@ sudo systemctl start ojod && sudo journalctl -fu ojod -o cat
 
 
 ## Snapshots
+### Stop Service and backup priv_validator
 ```
-curl -L https://snapshots.kjnodes.com/ojo-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.ojo
-[[ -f $HOME/.ojo/data/upgrade-info.json ]] && cp $HOME/.ojo/data/upgrade-info.json $HOME/.ojo/cosmovisor/genesis/upgrade-info.json
+sudo systemctl stop ojod
+cp $HOME/.ojo/data/priv_validator_state.json $HOME/.ojo/priv_validator_state.json.backup
+rm -rf $HOME/.ojo/data
+```
 
-sudo systemctl start ojod && sudo journalctl -u ojod -f --no-hostname -o cat
+### Download Snapshot
+```
+curl -L https://ojo-t.service.indonode.net/ojo-snapshot.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.ojo
+mv $HOME/.ojo/priv_validator_state.json.backup $HOME/.ojo/data/priv_validator_state.json
+```
+### Restart Node and Check the logs
+```
+sudo systemctl restart ojod && sudo journalctl -u ojod -f --no-hostname -o cat
 ```
 
 ## Deleting Node
