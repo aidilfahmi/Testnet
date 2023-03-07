@@ -52,5 +52,5 @@ sudo journalctl -u andromedad -f -o cat
 ```
 ### Check Balance
 ```
-andromedad query bank balances $(planqd keys show wallet_name -a)
+andromedad query bank balances $(andromedad keys show wallet_name -a)
 ```
