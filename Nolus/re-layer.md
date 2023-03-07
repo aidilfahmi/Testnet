@@ -29,7 +29,10 @@ sed -i 's|deb http://nova.clouds.archive.ubuntu.com/ubuntu/ jammy.*||g' /etc/apt
 
 hermes version
 ```
-
+### Enable Indexer
+```
+sed -i -e 's|^indexer *=.*|indexer = "kv"|' $HOME/.nolus/config/config.toml
+```
 ### Set Config Hermes
 ```
 nano $HOME/.hermes/config.toml
