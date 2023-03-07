@@ -154,9 +154,14 @@ Should be like this
 
 ![image](https://user-images.githubusercontent.com/16186519/223024471-850626c5-1ffc-49bc-a8b1-6ebe556062d5.png)
 
-## Import Wallet
+## Wallet
+### If you don't have a wallet, you can create one
+```
+nolusd keys add wallet_name
+```
+save your ``mnemonic phrase``
 
-### Use Nolus Wallet from NODE before.
+### If you already have, you can import here.
 
 ```bash
 MNEMONIC="Your_mnemonic_or_Phrase"
@@ -177,7 +182,7 @@ hermes keys balance --chain $c
 done
 ```
 
-## Create Systemd
+## Create hermes service
 
 ```bash
 cat <<EOF > /etc/systemd/system/hermesd.service
@@ -198,7 +203,7 @@ EOF
 
 ```
 
-## Start Sytem
+## Start hermesd
 
 ```bash
 systemctl daemon-reload
