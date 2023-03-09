@@ -12,7 +12,7 @@ su - ojo
 - Skip this step if running default port configurations
 ```
 ```
-PORT=36
+PORT=59
 echo "export PORT=${PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -58,9 +58,9 @@ sudo ln -s $HOME/.ojo/cosmovisor/current/bin/ojod /usr/bin/ojod
 
 Replace `moniker_name` with your own moniker name
 ```
-ojod config chain-id OJO-DEVNET-1
+ojod config chain-id OJO-DEVNET
 ojod config keyring-backend test
-ojod init moniker_name --chain-id OJO-DEVNET-1
+ojod init moniker_name --chain-id OJO-DEVNET
 ```
 
 ## Set Peers and Seeds
