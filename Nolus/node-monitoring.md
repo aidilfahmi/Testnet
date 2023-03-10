@@ -143,7 +143,7 @@ scrape_configs:
     metrics_path: /metrics/validators
     static_configs:
       - targets:
-          - 127.0.0.1:9300 # Port node-exporter
+          - 127.0.0.1:9300 # Port cosmos-exporter
         labels: {}
   - job_name: validator
     metrics_path: /metrics/validator
