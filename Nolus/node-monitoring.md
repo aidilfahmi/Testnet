@@ -9,12 +9,14 @@ gRPC = 55090
 ```
 sudo apt-get update
 sudo apt-get upgrade -y
+sudo apt install docker
+sudo apt install docker-compose
 sudo apt install jq -y
 sudo apt install python3-pip -y
 sudo pip install yq
 ```
 
-## Install cosmos-exporter
+## COSMOS EXPORTER
 ### Install Binary
 ```
 wget https://github.com/solarlabsteam/cosmos-exporter/releases/download/v0.2.2/cosmos-exporter_0.2.2_Linux_x86_64.tar.gz
@@ -47,7 +49,7 @@ KillSignal=SIGTERM
 WantedBy=multi-user.target
 EOF
 ```
-## Install Node Exporter
+## NODE EXPORTER
 ### Install Binary
 ```
 wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
@@ -82,3 +84,120 @@ sudo systemctl start cosmos-exporter
 sudo systemctl enable node_exporter
 sudo systemctl start node_exporter
 ```
+
+## PROMETHEUS
+```
+custom port web 7090
+```
+### Installing Binary
+```
+wget https://github.com/prometheus/prometheus/releases/download/v2.42.0/prometheus-2.42.0.linux-amd64.tar.gz
+tar xvfz prometheus-*.*-amd64.tar.gz
+sudo mv prometheus-*.*-amd64/prometheus /usr/local/bin/
+rm prometheus-* -rf
+```
+### Create Prometheus.yml
+```
+sudo mkdir -p /etc/prometheus
+```
+```diff
+- Edit Port, Nolus address and Validator Address with your own configurations.
+
+sudo tee /etc/prometheus/prometheus.yml > /dev/null <<EOF
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+alerting:
+  alertmanagers:
+    - follow_redirects: true
+      scheme: http
+      timeout: 10s
+      api_version: v2
+      static_configs:
+        - targets:
+            - alertmanager:9093
+rule_files:
+  - /etc/prometheus/alerts/alert.rules
+scrape_configs:
+  - job_name: prometheus
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - localhost:7090 # Prometheus will be running
+  - job_name: cosmos
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - 127.0.0.1:55660 # Port Prometheus from Nolus
+        labels: {}
+  - job_name: node
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - 127.0.0.1:9100 # Port node-exporter
+        labels:
+          instance: nolus-rila
+  - job_name: validators
+    metrics_path: /metrics/validators
+    static_configs:
+      - targets:
+          - 127.0.0.1:9300 # Port node-exporter
+        labels: {}
+  - job_name: validator
+    metrics_path: /metrics/validator
+    relabel_configs:
+      - source_labels:
+          - address
+        target_label: __param_address
+    static_configs:
+      - targets:
+          - 127.0.0.1:9300 # Port cosmos-exporter
+        labels:
+          address: # validator-address
+  - job_name: wallet
+    metrics_path: /metrics/wallet
+    relabel_configs:
+      - source_labels:
+          - address
+        target_label: __param_address
+    static_configs:
+      - targets:
+          - 127.0.0.1:9300  # Port cosmos-exporter
+        labels:
+          address: # nolus-address
+EOF
+```
+### Create Prometheus Service
+
+```diff
+-This configuration using custom port 7090.
+-If you are using default port (9090), please delete this part: --web.listen-address="0.0.0.0:7090"
+sudo tee /etc/systemd/system/prometheus.service > /dev/null <<EOF
+[Unit]
+Description=Prometheus
+After=network.target
+[Service]
+User=root
+Type=simple
+ExecStart=/usr/local/bin/prometheus --config.file="/etc/prometheus/prometheus.yml" --web.listen-address="0.0.0.0:7090"
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+### Enable and start Service
+```
+sudo systemctl daemon-reload
+sudo systemctl enable prometheus
+sudo systemctl start prometheus
+```
+## GRAFANA
+### Default Installation GRAFANA
+```
+sudo docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
+```
+### Installation GRAFANA with PUBLIC DASHBOARD ENABLE
+```
+sudo docker run -d -p 3000:3000   -e "GF_FEATURE_TOGGLES_ENABLE=publicDashboards"   grafana/grafana-enterprise
+```
+
