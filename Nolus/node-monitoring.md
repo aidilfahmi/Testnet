@@ -4,6 +4,7 @@ Here is my Node Port
 ```
 RPC = 55657
 gRPC = 55090
+Prometheus PORT from config.toml : 55660 
 ```
 ## Installing Required Dependencies
 ```
