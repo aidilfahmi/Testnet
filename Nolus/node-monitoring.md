@@ -1,12 +1,12 @@
-# Installation NODE BINARY
-## Port Configuration
+# $${\color{lightgreen}Installation \space Node \space Binary}$$
+## ${\color{lightblue}Port \space Configuration}$
 Here is my Node Port
 ```
 RPC = 55657
 gRPC = 55090
 Prometheus PORT from config.toml : 55660 
 ```
-## Installing Required Dependencies
+## ${\color{lightblue}Installing \space Required \space Dependencies}$
 ```
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -17,7 +17,7 @@ sudo apt install python3-pip -y
 sudo pip install yq
 ```
 
-## COSMOS EXPORTER
+## ${\color{orange}COSMOS \space EXPORTER}$	
 ### Install Binary
 ```
 wget https://github.com/solarlabsteam/cosmos-exporter/releases/download/v0.2.2/cosmos-exporter_0.2.2_Linux_x86_64.tar.gz
@@ -54,7 +54,7 @@ KillSignal=SIGTERM
 WantedBy=multi-user.target
 EOF
 ```
-## NODE EXPORTER
+## ${\color{orange}NODE \space EXPORTER}$
 ### Install Binary
 ```
 wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
@@ -90,7 +90,7 @@ sudo systemctl enable node_exporter
 sudo systemctl start node_exporter
 ```
 
-## PROMETHEUS
+## ${\color{orange}PROMETHEUS}$
 ```
 custom port web 7090
 ```
@@ -196,7 +196,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable prometheus
 sudo systemctl start prometheus
 ```
-## GRAFANA
+## ${\color{orange}GRAFANA}$
 ### Default Installation GRAFANA
 ```
 sudo docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
@@ -205,5 +205,5 @@ sudo docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
 ```
 sudo docker run -d -p 3000:3000   -e "GF_FEATURE_TOGGLES_ENABLE=publicDashboards"   grafana/grafana-enterprise
 ```
-# SETTING GRAFANA DASHBOARD
+# $${\color{lightgreen}SETTING \space GRAFANA \space DASHBOARD}$$
 to be continue...
