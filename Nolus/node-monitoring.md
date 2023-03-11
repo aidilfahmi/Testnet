@@ -30,7 +30,11 @@ rm cosmos-exporter* -rf
 sudo useradd -rs /bin/false cosmos_exporter
 ```
 ### Create Service
-```
+```diff
+-Check This, Replace with your own PORT
+--tendermint-rpc http://localhost:55657 
+--node localhost:55090
+
 sudo tee <<EOF >/dev/null /etc/systemd/system/cosmos-exporter.service
 [Unit]
 Description=Cosmos Exporter
