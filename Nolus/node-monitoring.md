@@ -1,4 +1,4 @@
-# Installation
+# Installation NODE BINARY
 ## Port Configuration
 Here is my Node Port
 ```
@@ -201,4 +201,5 @@ sudo docker run -d --name=grafana -p 3000:3000 grafana/grafana-enterprise
 ```
 sudo docker run -d -p 3000:3000   -e "GF_FEATURE_TOGGLES_ENABLE=publicDashboards"   grafana/grafana-enterprise
 ```
-
+# SETTING GRAFANA DASHBOARD
+to be continue...
