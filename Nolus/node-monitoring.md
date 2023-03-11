@@ -125,7 +125,7 @@ scrape_configs:
     metrics_path: /metrics
     static_configs:
       - targets:
-          - localhost:7090 # Prometheus will be running
+          - localhost:7090 # Prometheus will be running (Default 9090)
   - job_name: cosmos
     metrics_path: /metrics
     static_configs:
