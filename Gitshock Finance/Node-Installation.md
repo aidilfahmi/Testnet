@@ -73,7 +73,7 @@ ExecStart=geth \
 --http.port 8545 \
 --http.addr 0.0.0.0 \
 --http.corsdomain "*" \
---identity "dnsarz" \
+--identity "<REPLACE-WITH-YOUR-MONIKER>" \
 --networkid=1881 \
 --syncmode=full \
 --authrpc.jwtsecret="$HOME/testnet-list/jwt.hex" \
@@ -138,9 +138,9 @@ ExecStart=lighthouse beacon \
 --enr-udp-port=9000 \
 --enr-tcp-port=9000 \
 --discovery-port=9000 \
---graffiti "dnsarz" \
+--graffiti "<REPLACE-WITH-YOUR-MONIKER>" \
 --execution-jwt "$HOME/testnet-list/jwt.hex" \
---suggested-fee-recipient=0xbC9b0923A5E75a9eC048b9E3A96Db3C146C05972 
+--suggested-fee-recipient=<REPLACE-WITH-YOUR-ADDRESS> 
 WorkingDirectory=$HOME
 Restart=always
 RestartSec=5
