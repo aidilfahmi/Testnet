@@ -37,7 +37,7 @@ elysd status 2>&1 | jq .NodeInfo
 ```
 ### Check node logs
 ```javascript
-elysd journalctl -u ojod -f -o cat
+elysd journalctl -u elysd -f -o cat
 ```
 ### Check Balance
 ```javascript
