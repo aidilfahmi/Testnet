@@ -89,7 +89,7 @@ sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${P
 
 ### Set Config Pruning
 ```javascript
-pruning="custom"
+pruning="nothing"
 pruning_keep_recent="100"
 pruning_keep_every="0"
 pruning_interval="19"
@@ -101,7 +101,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 
 ### Set minimum gas price
 ```javascript
-
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0uelys\"|" $HOME/.elys/config/app.toml
 ```
 
 ### Create Service
