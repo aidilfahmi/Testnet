@@ -39,10 +39,11 @@ wget https://files.elixir.finance/Dockerfile
 nano Dockerfile
 ```
 Edit this line 
+```
 ENV ADDRESS=Your_Wallet_Address
 ENV PRIVATE_KEY=Private_Key
 ENV VALIDATOR_NAME=Your_Discord_Username
-
+```
 ### Compiling Node
 ```javascript
 sudo docker kill ev
