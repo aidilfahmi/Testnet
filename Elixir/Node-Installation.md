@@ -53,5 +53,5 @@ sudo docker build . -f Dockerfile -t elixir-validator
 ```
 ### Start Node
 ```javascript
-docker run -d --restart unless-stopped --name ev elixir-validator
+sudo docker run -d --restart unless-stopped --name ev elixir-validator
 ```
