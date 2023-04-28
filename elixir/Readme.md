@@ -1,1 +1,0 @@
-Elixir Public Testnet
