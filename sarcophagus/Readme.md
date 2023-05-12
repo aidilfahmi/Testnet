@@ -26,6 +26,20 @@ _If running on Goerli (chain id = 5), then you will need Goerli ETH + Goerli SAR
 
 - A registered domain name [pointed at your server's ip address](https://www.servers.com/support/knowledge/dedicated-servers/how-to-point-your-domain-name-to-dedicated-servers-ip-address#:~:text=To%20point%20your%20domain%20name%20to%20your%20dedicated%20server's%20public,on%20the%20domain's%20name%20servers.) 
 ---
+## Preparing
+### Installing Docker
+```javascript
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
 
 ## Setup Instructions
 
@@ -87,35 +101,35 @@ To run the CLI:
 ```
 // change profile to have digging fee of 5
 // this will also update your domain + peerID automatically
-docker compose exec -it archaeologist sh
+sudo docker compose exec -it archaeologist sh
 cli update -d 5
 exit
 ```
 
 **Deposit 100 SARCO to free bond**
 ```
-docker compose exec -it archaeologist sh
+sudo docker compose exec -it archaeologist sh
 cli update -f 100
 exit
 ```
 
 **View Profile**
 ```
-docker compose exec -it archaeologist sh
+sudo docker compose exec -it archaeologist sh
 cli view -p
 exit
 ```
 
 **Claim Rewards**
 ```
-docker compose exec -it archaeologist sh
+sudo docker compose exec -it archaeologist sh
 cli claim
 exit
 ```
 
 **Withdraw 5 SARCO from Free Bond**
 ```
-docker compose exec -it archaeologist sh
+sudo docker compose exec -it archaeologist sh
 cli free-bond -w 5
 exit
 ```
@@ -123,16 +137,16 @@ exit
 ### Updating the service
 To update the service to the latest version:<br>
 ```
-COMPOSE_PROFILES=service docker compose stop
-COMPOSE_PROFILES=service docker compose pull
-COMPOSE_PROFILES=service docker compose up -d
+sudo COMPOSE_PROFILES=service docker compose stop
+sudo COMPOSE_PROFILES=service docker compose pull
+sudo COMPOSE_PROFILES=service docker compose up -d
 ```
 
 ### Restarting the service
 To restart the service:<br>
 ```
-COMPOSE_PROFILES=service docker compose stop
-COMPOSE_PROFILES=service docker compose up -d
+sudo COMPOSE_PROFILES=service docker compose stop
+sudo COMPOSE_PROFILES=service docker compose up -d
 ```
 
 ## Troubleshooting
@@ -163,7 +177,7 @@ Test that your archaeologist can have websocket connection open by entering your
 To get your domain and peerID, run:
 
 ```
-docker compose exec -it archaeologist sh
+sudo docker compose exec -it archaeologist sh
 cli view -p
 ```
 
@@ -181,14 +195,14 @@ An example would look like:
 
 ```
 **Archaeologist Logs**
-docker container ls   // get container ID of ghcr.io/sarcophagus-org/sarcophagus-v2-archaeologist-service:latest
-docker logs <container_id>
+sudo docker container ls   // get container ID of ghcr.io/sarcophagus-org/sarcophagus-v2-archaeologist-service:latest
+sudo docker logs <container_id>
 ```
 
 ```
 **SSL cert logs**
-docker container ls   // get container ID of nginxproxy/acme-companion
-docker logs <container_id>
+sudo docker container ls   // get container ID of nginxproxy/acme-companion
+sudo docker logs <container_id>
 ```
 
 ### Updating your domain after registering
@@ -196,11 +210,11 @@ If you update your domain after registering, you will need to update the archaeo
 
 ```
 // Update the archaeologist by depositing 1 free bond
-docker compose exec -it archaeologist sh
+sudo docker compose exec -it archaeologist sh
 cli update -f 1
 exit
 
 // restart archaeologist service
-COMPOSE_PROFILES=service docker compose stop
-COMPOSE_PROFILES=service docker compose up -d
+sudo COMPOSE_PROFILES=service docker compose stop
+sudo COMPOSE_PROFILES=service docker compose up -d
 ```
