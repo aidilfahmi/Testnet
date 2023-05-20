@@ -112,15 +112,18 @@ sudo tee /etc/systemd/system/elysd.service > /dev/null << EOF
 [Unit]
 Description=ELYS Testnet
 After=network-online.target
+
 [Service]
 User=$USER
 ExecStart=$HOME/go/bin/cosmovisor run start
+WorkingDirectory=$HOME
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
 Environment="DAEMON_HOME=$HOME/.elys"
 Environment="DAEMON_NAME=elysd"
 Environment="UNSAFE_SKIP_BACKUP=true"
+
 [Install]
 WantedBy=multi-user.target
 
