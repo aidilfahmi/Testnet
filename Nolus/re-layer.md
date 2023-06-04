@@ -3,7 +3,7 @@
 ## Install Hermes
 
 ```bash
-curl -L#  https://github.com/informalsystems/hermes/releases/download/v1.2.0/hermes-v1.2.0-x86_64-unknown-linux-gnu.tar.gz | tar -xzf- -C /usr/local/bin
+curl -L#  https://github.com/informalsystems/hermes/releases/download/v1.2.0/hermes-v1.2.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar -xzf- -C /usr/local/bin
 mkdir -p $HOME/.hermes
 ```
 
