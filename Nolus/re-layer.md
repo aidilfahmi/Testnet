@@ -3,7 +3,7 @@
 ## Install Hermes
 
 ```bash
-curl -L#  https://github.com/informalsystems/hermes/releases/download/v1.2.0/hermes-v1.2.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar -xzf- -C /usr/local/bin
+curl -L#  https://github.com/informalsystems/hermes/releases/download/v1.5.1/hermes-v1.5.1-x86_64-unknown-linux-gnu.tar.gz | sudo tar -xzf- -C /usr/local/bin
 mkdir -p $HOME/.hermes
 ```
 
@@ -14,8 +14,8 @@ hermes version
 ```
 should be something like this
 ```
-2023-03-06T04:56:38.420498Z  INFO ThreadId(01) running Hermes v1.2.0+061f14f
-hermes 1.2.0+061f14f
+2023-06-10T01:40:31.718840Z  INFO ThreadId(01) running Hermes v1.5.1+6583d69
+hermes 1.5.1+6583d69
 ```
 
 ### If `glibc` Error (OPTIONAL)
