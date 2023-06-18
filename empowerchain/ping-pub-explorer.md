@@ -72,32 +72,33 @@ git clone https://github.com/ping-pub/explorer
 ```
 
 ### Create or edit your config file
+There are so many configurations on ``$HOME/explorer/chains/mainnet``. You can delete files that you don't need or you can also create new files with your own configuration. Here's for example.
 ```
-nano $HOME/explorer/chains/mainnet/planq.json
+nano $HOME/explorer/chains/mainnet/empower.json
 ```
 
 Here's my configuration for example
 
 ```
 {
-    "chain_name": "planq",
-    "api": ["https://api.planq.dnsarz.xyz"],
-    "rpc": ["https://rpc.planq.dnsarz.xyz"],
+    "chain_name": "empower",
+    "api": ["https://empower-testnet-api.polkachu.com"],
+    "rpc": ["https://empower-testnet-rpc.polkachu.com"],
+    "coingecko": "",
     "snapshot_provider": "",
-    "sdk_version": "0.46.3",
-    "coin_type": "60",
-    "min_tx_fee": "5000000000000000",
-    "addr_prefix": "plq",
-    "logo": "/logos/planq.png",
-    "keplr_features": ["ibc-transfer", "ibc-go", "eth-address-gen", "eth-key-sign"],
+    "sdk_version": "0.47.1",
+    "coin_type": "118",
+    "min_tx_fee": "500",
+    "addr_prefix": "empower",
+    "logo": "https://explorer.nodexcapital.com/logos/empower.png",
     "assets": [{
-        "base": "aplanq",
-        "symbol": "planq",
-        "exponent": "18",
+        "base": "umpwr",
+        "symbol": "MPWR",
+        "exponent": "6",
         "coingecko_id": "",
-        "logo": "/logos/planq.png"
+        "logo": "https://explorer.nodexcapital.com/logos/empower.png"
     }]
-}
+  }
 ```
 ### Build the Explorer
 ```
