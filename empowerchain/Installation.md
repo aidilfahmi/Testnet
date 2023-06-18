@@ -13,7 +13,7 @@ su - empower
 - Skip this step if running default port configurations
 ```
 ```
-PORT=40
+PORT=44
 echo "export PORT=${PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
@@ -29,7 +29,7 @@ sudo apt -qy upgrade
 ### Install GO
 ```javascript
 sudo rm -rf /usr/local/go && \
-curl -Ls https://go.dev/dl/go1.19.5.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local && \
+curl -Ls https://go.dev/dl/go1.20.5.src.tar.gz | sudo tar -xzf - -C /usr/local && \
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile && \
 source $HOME/.bash_profile && \
 go version
@@ -40,18 +40,16 @@ go version
 ### Get Binary
 ```javascript
 cd $HOME
-rm -rf empowerchain
-git clone https://github.com/EmpowerPlastic/empowerchain.git
-cd empowerchain/chain
-git checkout v0.0.3
-make build
+wget https://github.com/EmpowerPlastic/empowerchain/releases/download/v1.0.0-rc3/empowerd-v1.0.0-rc3-linux-amd64.zip
+unzip empowerd-v1.0.0-rc3-linux-amd64.zip
+./empowerd  version
 ```
 
 #### Install Cosmovisor
 ```javascript
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
 mkdir -p $HOME/.empowerchain/cosmovisor/genesis/bin
-mv build/empowerd $HOME/.empowerchain/cosmovisor/genesis/bin
+mv empowerd $HOME/.empowerchain/cosmovisor/genesis/bin
 ln -s $HOME/.empowerchain/cosmovisor/genesis $HOME/.empowerchain/cosmovisor/current
 sudo ln -s $HOME/.empowerchain/cosmovisor/current/bin/empowerd /usr/bin/empowerd
 ```
@@ -60,9 +58,9 @@ sudo ln -s $HOME/.empowerchain/cosmovisor/current/bin/empowerd /usr/bin/empowerd
 
 Replace `moniker_name` with your own moniker name
 ```javascript
-empowerd config chain-id altruistic-1
+empowerd config chain-id circulus-1
 empowerd config keyring-backend test
-empowerd init moniker_name --chain-id altruistic-1
+empowerd init moniker_name --chain-id circulus-1
 ```
 
 ### Set Port app.toml and config.toml
@@ -77,13 +75,16 @@ sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${P
 
 ### Set Peers and Seeds
 ```javascript
-
+SEEDS="258f523c96efde50d5fe0a9faeea8a3e83be22ca@seed.circulus-1.empower.aviaone.com:20272,d6a7cd9fa2bafc0087cb606de1d6d71216695c25@51.159.161.174:26656,babc3f3f7804933265ec9c40ad94f4da8e9e0017@testnet-seed.rhinostake.com:17456"
+PEERS=""
+sed -i 's|^seeds *=.*|seeds = "'$SEEDS'"|; s|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.empowerchain/config/config.toml
+sed -i -e "s/^filter_peers *=.*/filter_peers = \"true\" /" $HOME/.empowerchain/config/config.toml
 ```
 
 ### Download Genesis and Addrbook
 ```javascript
-curl -Ls https://raw.githubusercontent.com/EmpowerPlastic/empowerchain/main/testnets/altruistic-1/genesis.json > $HOME/.empowerchain/config/genesis.json
-
+curl -Ls https://raw.githubusercontent.com/aidilfahmi/Testnet/main/empowerchain/genesis.json > $HOME/.empowerchain/config/genesis.json
+curl -Ls https://raw.githubusercontent.com/aidilfahmi/Testnet/main/empowerchain/addrbook.json > $HOME/.empowerchain/config/addrbook.json
 ```
 
 ### Set Config Pruning
