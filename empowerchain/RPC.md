@@ -156,12 +156,8 @@ systemctl restart nginx
 Open your browser and check your API sub-domain
 > https://api-empower.dnsarz.xyz
   
-![image](https://user-images.githubusercontent.com/16186519/215946801-17929a44-0f03-40bc-b80f-a996bf66e235.png)
-
 Open your browser and check your RPC sub-domain
 > https://rpc-empower.dnsarz.xyz
-
-![image](https://user-images.githubusercontent.com/16186519/215947098-0c58247b-d879-421c-90ce-172acdaa687d.png)
 
   
 IF everything showing on your browser like that images, then well done, you already create your own API and RPC.
