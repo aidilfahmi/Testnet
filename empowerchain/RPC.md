@@ -133,7 +133,8 @@ should be like this
 ```bash
 sudo certbot --nginx --register-unsafely-without-email
 ```
-![image](https://user-images.githubusercontent.com/16186519/215944270-1019d6d1-cf82-49b3-bf08-cf55cb732b45.png)
+![image](https://github.com/aidilfahmi/Testnet/assets/16186519/c0695a95-b6e7-4b33-8e4d-d24d81613ed2)
+
 
 > Select 1 and press enter <br>
   if the BOT asking for 'redirect', select YES.<br>
