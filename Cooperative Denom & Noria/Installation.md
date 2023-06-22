@@ -4,9 +4,9 @@
 ### Custom User
 
 ```javascript
-sudo adduser blockx
-sudo adduser blockx sudo
-su - blockx
+sudo adduser noria
+sudo adduser noria sudo
+su - noria
 ```
 ### Custom Port
 ```diff
