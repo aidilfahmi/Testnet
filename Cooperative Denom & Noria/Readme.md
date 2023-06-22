@@ -1,0 +1,1 @@
+Cooperative Denom & Noria TESTNET
