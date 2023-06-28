@@ -1,8 +1,4 @@
-<!--
-order: 3
--->
-
-# Disk Usage Optimization
+# $${\color{lightgreen}Disk-Usage \space Optimization}$$
 
 Customize the configuration settings to lower the disk requirements for your validator node {synopsis}
 
@@ -14,87 +10,60 @@ disk usage quite significantly. Some of these changes take full effect
 only when you do the configuration and start syncing from start with
 them in use.
 
-## Indexing
-
+## ${\color{orange}Indexing}$
 If you do not need to query transactions from the specific node, you can
-disable indexing. On `config.toml` set
-
+disable indexing. <br>
+Replace `node_dir` with current node directory.
 ```toml
-indexer = "null"
+sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.node_dir/config/config.toml
 ```
 
 If you do this on already synced node, the collected index is not purged
 automatically, you need to delete it manually. The index is located
 under the database directory with name `data/tx_index.db/`.
 
-## State-sync snapshots
-
-On `app.toml` set
+## ${\color{orange}State-sync \space Snapshots}$
+Replace `node_dir` with current node directory.
 
 ```toml
-snapshot-interval = 0
+sed -i -e 's|^snapshot-interval *=.*|snapshot-interval = "0"|' $HOME/.node_dir/config/app.toml
 ```
 
 Note that if state-sync was enabled on the network and working properly,
 it would allow one to sync a new node in few minutes. But this node
 would not have the history.
 
-## Configure pruning
-
+## ${\color{orange}Pruning}$
 By default every 500th state, and the last 100 states are kept. This
 consumes a lot of disk space on long run, and can be optimized with
-following custom configuration:
+following custom configuration:<br>
+Replace `node_dir` with current node directory.
 
 ```toml
-pruning = "custom"
-pruning-keep-recent = "100"
-pruning-keep-every = "0"
-pruning-interval = "10"
-```
+PRUNING="custom"
+PRUNING_KEEP_RECENT="100"
+PRUNING_INTERVAL="19"
 
+sed -i -e "s/^pruning *=.*/pruning = \"$PRUNING\"/" $HOME/.banksy/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \
+\"$PRUNING_KEEP_RECENT\"/" $HOME/.node_dir/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \
+\"$PRUNING_INTERVAL\"/" $HOME/.node_dir/config/app.toml
+```
 Configuring `pruning-keep-recent = "0"` might sound tempting, but this
 will risk database corruption if the `nibid` is killed for any reason.
 Thus, it is recommended to keep the few latest states.
 
-## Logging
+## ${\color{orange}Logging}$
 
 By default the logging level is set to `info`, and this produces a lot of
 logs. This log level might be good when starting up to see that the
 node starts syncing properly. However, after you see the syncing is
-going smoothly, you can lower the log level to `warn` (or `error`). On
-`config.toml` set the following
-
+going smoothly, you can lower the log level to `warn` (or `error`). <br>
+Replace `node_dir` with current node directory.
 ```toml
-log_level = "warn"
+sed -i -e 's|^log_level *=.*|log_level = "warn"|' $HOME/.node_dir/config/config.toml
 ```
 
 Also ensure your log rotation is configured properly.
 
-## Results
-
-The default configuration leads to a lot of disk usage.
-
-```bash
-5.3G    ./state.db
-70G     ./application.db
-20K     ./snapshots/metadata.db
-24K     ./snapshots
-9.0G    ./blockstore.db
-20K     ./evidence.db
-1018M   ./cs.wal
-4.7G    ./tx_index.db
-90G     .
-```
-
-This optimized configuration reduced disk usage.
-
-```bash
-17G     .
-1.1G    ./cs.wal
-946M    ./application.db
-20K     ./evidence.db
-9.1G    ./blockstore.db
-24K     ./snapshots
-20K     ./snapshots/metadata.db
-5.3G    ./state.db
-```
