@@ -16,8 +16,10 @@ sudo apt install curl
 ## ${\color{lightblue}Setup \space Node}$ 
 ### ${\color{orange}Install-Binary}$
 ```javascript
-curl -L https://github.com/pactus-project/pactus/releases/download/v0.13.0/pactus-cli_0.13.0_linux_amd64.tar.gz | tar -xz -C $HOME
-mv pactus-cli_0.13.0 cli
+cd $HOME
+rm -fr cli
+curl --proto '=https' --tlsv1.2 -sSL  https://github.com/pactus-project/pactus/releases/download/v0.13.0/pactus_downloader.sh | sh
+mv pactus-cli* cli
 echo "export PATH=$PATH:$HOME/cli" >> $HOME/.bash_profile && source $HOME/.bash_profile
 ```
 ### ${\color{orange}Create \space or \space Restore \space Wallet}$
