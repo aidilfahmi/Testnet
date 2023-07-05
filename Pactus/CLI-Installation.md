@@ -23,7 +23,7 @@ echo "export PATH=$PATH:$HOME/cli" >> $HOME/.bash_profile && source $HOME/.bash_
 ### ${\color{orange}Create \space or \space Restore \space Wallet}$
 #### Create
 ```javascript
-./pactus-daemon init -w ~/pactus --testnet
+pactus-daemon init -w ~/pactus --testnet
 ```
 #### Restore
 ```javascript
