@@ -39,8 +39,8 @@ sudo tee /etc/systemd/system/pactus.service > /dev/null <<EOF
 Description=Pactus Node
 After=network-online.target
 [Service]
-User=$USER
-ExecStart=$(which pactus-daemon) start -w pactus
+User=root
+ExecStart=$(which pactus-daemon) start -w $HOME/pactus
 WorkingDirectory=$HOME
 Restart=on-failure
 RestartSec=3
@@ -53,7 +53,7 @@ EOF
 ```javascript
 sudo systemctl enable pactus
 sudo systemctl daemon-reload
-sudo systemctl start pactus && sudo journalctl -fu pactus -o cat
+sudo systemctl restart pactus && sudo journalctl -fu pactus -o cat
 ```
 
 ## ${\color{lightblue}Custom \space Port}$ 
