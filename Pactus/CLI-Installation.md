@@ -29,6 +29,7 @@ pactus-daemon init -w ~/pactus --testnet
 ```javascript
 pactus-daemon init -w ~/pactus --testnet --restore "your wallet phase"
 ```
+### If installation asking you for wallet password, `just press enter to skip it`
 ### ${\color{orange}Create \space Service}$
 ```javascript
 sudo tee /etc/systemd/system/pactus.service > /dev/null <<EOF
