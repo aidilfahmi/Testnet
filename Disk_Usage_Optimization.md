@@ -64,6 +64,11 @@ Replace `node_dir` with current node directory.
 ```toml
 sed -i -e 's|^log_level *=.*|log_level = "warn"|' $HOME/.node_dir/config/config.toml
 ```
-
+Here is what i see to reduce disk usage
+```
+a) start with Snapshots
+b) config/app.toml -> pruning: cutom: 500 / 0 / 10 -> reduce blockstore.db
+c) config/app.toml -> min-retain-blocks=1200000 ( 28 days ) -> reduce application.db
+```
 Also ensure your log rotation is configured properly.
 
