@@ -40,11 +40,10 @@ go version
 ### Get Binary
 ```javascript
 cd $HOME
-rm -rf elys
-git clone https://github.com/elys-network/elys.git
-cd elys
-git checkout v0.2.3
-make build
+wget https://github.com/elys-network/elys/releases/download/v0.16.0/elysd-v0.16.0-linux-amd64.tar.gz
+tar -zxvf elysd-v0.16.0-linux-amd64.tar.gz
+sudo mv elysd  /usr/local/bin/
+rm elysd-v0.16.0-linux-amd64.tar.gz
 ```
 
 #### Install Cosmovisor
@@ -67,15 +66,12 @@ elysd init moniker_name --chain-id elystestnet-1
 
 ### Set Peers and Seeds
 ```javascript
-PEERS="$(curl -sS https://rpc.elys-t.indonode.net/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}' | sed -z 's|\n|,|g;s|.$||')"
-sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.elys/config/config.toml
 sed -i 's/seeds = ""/seeds = "ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:22056"/' ~/.elys/config/config.toml
 ```
 
 ### Download Genesis and Addrbook
 ```javascript
 curl -Ls https://raw.githubusercontent.com/elys-network/elys/main/chain/genesis.json > $HOME/.elys/config/genesis.json
-curl -Ls https://snapshots.indonode.net/elys-t/addrbook.json > $HOME/.elys/config/addrbook.json
 ```
 
 ### Set Port app.toml and config.toml
