@@ -8,6 +8,12 @@
 * For non-Node participants, you can join  pilot program [here](https://points.absinthe.network/hemi/) : Use my code to Enter: `a8389da2`
 * You can run miner using web browser on windows here: https://pop-miner.hemi.xyz/
 
+## Custom User (optional)
+```bash
+sudo adduser hemi
+sudo adduser hemi sudo
+su - hemi
+```
 ## Install Miner on Linux
 **1. Download Binaries**
 ```bash
