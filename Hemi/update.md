@@ -9,7 +9,7 @@ wget https://github.com/hemilabs/heminetwork/releases/download/v0.4.4/heminetwor
 ```bash
 sudo systemctl stop hemi
 rm -fr heminetwork
-tar -xvf heminetwork_v0.4.4_linux_amd64.tar.gz && rm heminetwork_v0.4.4_linux_amd64.tar.gz
+tar -zxvf heminetwork_v0.4.4_linux_amd64.tar.gz && rm heminetwork_v0.4.4_linux_amd64.tar.gz
 mv heminetwork_v0.4.4_linux_amd64.tar.gz heminetwork
 ```
 
