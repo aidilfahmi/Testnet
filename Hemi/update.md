@@ -1,16 +1,16 @@
-# Update Binary v0.4.4
+# Update Binary v0.4.5
 **1. Download Binaries**
 ```bash
 cd $HOME
-wget https://github.com/hemilabs/heminetwork/releases/download/v0.4.4/heminetwork_v0.4.4_linux_amd64.tar.gz
+wget https://github.com/hemilabs/heminetwork/releases/download/v0.4.5/heminetwork_v0.4.5_linux_amd64.tar.gz
 ```
 
 **2. Extract Binaries**
 ```bash
 sudo systemctl stop hemi
 rm -fr heminetwork
-tar -zxvf heminetwork_v0.4.4_linux_amd64.tar.gz && rm heminetwork_v0.4.4_linux_amd64.tar.gz
-mv heminetwork_v0.4.4_linux_amd64 heminetwork
+tar -zxvf heminetwork_v0.4.5_linux_amd64.tar.gz && rm heminetwork_v0.4.5_linux_amd64.tar.gz
+mv heminetwork_v0.4.5_linux_amd64 heminetwork
 ```
 
 ## Restart Service
