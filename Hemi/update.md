@@ -1,4 +1,4 @@
-# Update Binary v0.4.5
+# Update Binary v0.5.0
 **1. Download Binaries**
 ```bash
 cd $HOME
