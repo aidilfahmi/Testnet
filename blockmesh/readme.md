@@ -31,7 +31,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ## Installing Binary
 ```bash
 cd $HOME
-curl -L https://github.com/block-mesh/block-mesh-monorepo/releases/download/v0.0.316/blockmesh-cli-x86_64-unknown-linux-gnu.tar.gz -o blockmesh-cli.tar.gz
+curl -L https://github.com/block-mesh/block-mesh-monorepo/releases/download/v0.0.317/blockmesh-cli-x86_64-unknown-linux-gnu.tar.gz -o blockmesh-cli.tar.gz
 tar -xzf blockmesh-cli.tar.gz
 ```
 
