@@ -21,12 +21,13 @@
 
 ![image](https://github.com/user-attachments/assets/5dcd042f-a0be-47fc-858a-106c129eb92f)
 
-* Silahkan Login dengan Usr **root**
 
 
 ## Add sshkey to mobaexterm
 ![image](https://github.com/user-attachments/assets/3d8e3cf8-18b3-47b2-a1b4-54d60a8873c4)
-
+* Kemudian add sshkey
+  
 ![image](https://github.com/user-attachments/assets/b8aadc65-cebf-415f-96c7-9cb8eeae6809)
 
 
+* Silahkan Login dengan User **root**
