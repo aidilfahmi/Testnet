@@ -5,11 +5,13 @@
 - Using metamask, create new wallet from metamask then claim the faucet here.
 - Faucet: https://hub.testnet.mawari.net/
 
-<img width="1023" height="301" alt="image" src="https://github.com/user-attachments/assets/0fbb79c7-5dd7-46ab-84a5-a724c5820c84" />
+<img width="1329" height="478" alt="image" src="https://github.com/user-attachments/assets/12a597cb-0b41-4ae9-a8ae-b9df4f4d72be" />
+
 
 - After get 2 Mawari token, mint Guardiang NFT ; 
 - Link: https://testnet.mawari.net/mint We Make 3 Mints.
-<img width="1294" height="874" alt="image" src="https://github.com/user-attachments/assets/bc3efc75-ffb3-4a41-8ede-6f6a7626c3c4" />
+<img width="1281" height="732" alt="image" src="https://github.com/user-attachments/assets/e9c2e1ff-3549-4584-91dc-004b87b81645" />
+
 
 
 # Setting up the Guardian Node 
