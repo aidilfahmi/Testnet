@@ -84,7 +84,7 @@ gnokey query -remote "https://rpc.test13.testnets.gno.land" auth/accounts/g1etf3
 gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'' -args $'' -args $'' -args $'' -args $'' -gas-fee 1000000ugnot -gas-wanted 50_000_000 -send "" -broadcast=false WALLET_ADDRESS > call.tx
 
 example ;
-gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'dnsarz' -args $'sample descriptions' -args $'data-center' -args $'g1etf3rd7dqghksj8r5yun12qwefspdfszdjhuvga' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zps250jghhjoiffnhzhf0vqrk3dyhgwvy0p3vszz2hqs2spqnmgxtp2vuz' -gas-fee 1000000ugnot -gas-wanted 1_000_000_000 -send "" -broadcast=false g1etf3rd7dqghksj8r5yun12qwefspdfszdjhuvga > call.tx
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'dnsarz' -args $'sample descriptions' -args $'data-center' -args $'g1etf3rd7dqghksj8r5yun12qwefspdfszdjhuvga' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zps250jghhjoiffnhzhf0vqrk3dyhgwvy0p3vszz2hqs2spqnmgxtp2vuz' -gas-fee 1000000ugnot -gas-wanted 50_000_000 -send "" -broadcast=false g1etf3rd7dqghksj8r5yun12qwefspdfszdjhuvga > call.tx
 ```
 ```shell
 gnokey sign -tx-path call.tx -chainid "test-13" -account-number ACCOUNTNUMBER -account-sequence SEQUENCENUMBER WALLET_ADDRESS
