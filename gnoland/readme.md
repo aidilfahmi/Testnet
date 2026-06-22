@@ -63,27 +63,36 @@ sudo systemctl restart gnoland && sudo journalctl -u gnoland -f
 ```
 
 ## 6. Register as a validator candidate
-
-Get your node's consensus public key:
-
-```shell
-gnoland secrets get validator_key | jq -r '.pub_key'
-```
 The registration transaction costs a gas fee, so your operator account needs GNOT. If it's empty, request a drip for your `g1...` address from the test13 faucet at <https://test13.testnets.gno.land/faucet>.
 
+Get your node's consensus public key and wallet address
 ```shell
-gnokey maketx call \
-  --pkgpath gno.land/r/gnops/valopers \
-  --func Register \
-  --args "<moniker>" \
-  --args "<description>" \
-  --args "<cloud|on-prem|data-center>" \
-  --args "<your-key-name>" \
-  --args "<your gpub1... consensus pubkey>" \
-  --gas-fee 1000000ugnot --gas-wanted 50000000 \
-  --chainid test-13 \
-  --remote https://rpc.test13.testnets.gno.land \
-  --broadcast \
-  <your-key-name>
+gnoland secrets get validator_key | jq -r '.pub_key'
+gnokey list
+```
+`check your account balance, account_number and sequence`
+
+```shell
+gnokey query -remote "https://rpc.test13.testnets.gno.land" auth/accounts/WALLET_ADDRESS
+
+example :
+gnokey query -remote "https://rpc.test13.testnets.gno.land" auth/accounts/g1etf3rd7dqghksj8r5yun12qwefspdfszdjhuvga
+```
+
+
+```shell
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'' -args $'' -args $'' -args $'' -args $'' -gas-fee 1000000ugnot -gas-wanted 1_000_000_000 -send "" -broadcast=false WALLET_ADDRESS > call.tx
+
+example ;
+gnokey maketx call -pkgpath "gno.land/r/gnops/valopers" -func "Register" -args $'dnsarz' -args $'sample descriptions' -args $'data-center' -args $'g1etf3rd7dqghksj8r5yun12qwefspdfszdjhuvga' -args $'gpub1pggj7ard9eg82cjtv4u52epjx56nzwgjyg9zps250jghhjoiffnhzhf0vqrk3dyhgwvy0p3vszz2hqs2spqnmgxtp2vuz' -gas-fee 1000000ugnot -gas-wanted 1_000_000_000 -send "" -broadcast=false g1etf3rd7dqghksj8r5yun12qwefspdfszdjhuvga > call.tx
+```
+```shell
+gnokey sign -tx-path call.tx -chainid "test-13" -account-number ACCOUNTNUMBER -account-sequence SEQUENCENUMBER WALLET_ADDRESS
+
+example:
+gnokey sign -tx-path call.tx -chainid "test-13" -account-number 12345678 -account-sequence 2 g1etf3rd7dqghksj8r5yun12qwefspdfszdjhuvga
+```
+```shell
+gnokey broadcast -remote "https://rpc.test13.testnets.gno.land" call.tx
 ```
 You can review registered valopers and the current set at <https://test13.testnets.gno.land/r/gnops/valopers> and <https://test13.testnets.gno.land/r/sys/validators/v3>.
